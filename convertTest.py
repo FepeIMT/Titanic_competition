@@ -4,14 +4,17 @@ import numpy as np
 import pandas as pd 
 
 
+
 def main():
-    Dataframe = pd.read_csv('train.csv')
+    Dataframe = pd.read_csv('test.csv')
+    #print(Dataframe)
     
     sex = Dataframe[['Sex']].dropna(axis =0, how = 'any')
     embarked = Dataframe[['Embarked']]
 
     Sexo = np.zeros((np.size(sex),1))
     Embarked = np.zeros((np.size(embarked) ,1))
+
 
     for i in range(np.size(sex)):
         if sex.values[i] == 'male':
@@ -27,15 +30,18 @@ def main():
         else:
             Embarked[i] = 0.5
 
-    myFile = open('sex.csv', 'w')
+
+    myFile = open('sextest.csv', 'w')
     with myFile:
         writer = csv.writer(myFile)
         writer.writerows(Sexo)    
 
-    myFile = open('Embarked.csv', 'w')
+    myFile = open('Embarkedtest.csv', 'w')
     with myFile:
         writer = csv.writer(myFile)
         writer.writerows(Embarked) 
+
+
 
 
 if __name__ == "__main__":
